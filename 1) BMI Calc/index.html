@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="./bmi.js" type="module"></script>
+  <script src="./script.js" type="module"></script>
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h1>BMI Calculator</h1>
+  <h2>GSG NodeJS/ExpressJS Bootcamp</h2>
+  <p>You can use this app to calculate your BMI (Body Mass Index), this will give you
+    an indication of your health and diet.
+  </p>
+  <div class="wrapper">
+    <div class="left">
+      <div class="input-group">
+        <label>Your Name and Age</label>
+        <input id="name" type="text" placeholder="Your name" value="Ahmad" />
+        <input id="age" type="number" max="100" style="width: 50px;" placeholder="25" value="25" />
+      </div>
+      <div class="input-group">
+        <label>Your Height</label>
+        <input id="height" type="number" placeholder="1.72" value="1.72" />
+      </div>
+      <div class="input-group">
+        <label>Your Weight</label>
+        <input id="weight" type="number" placeholder="65" value="65" />
+      </div>
+      <div class="input-group">
+        <button onclick="calculateBMI()">Calculate</button>
+        <button>Clear</button>
+      </div>
+    </div>
+    <div class="right">
+      <h3 id="result">Your BMI: 0</h3>
+    </div>
+  </div>
+</body>
+
+</html>
