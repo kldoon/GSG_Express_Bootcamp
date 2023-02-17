@@ -27,6 +27,30 @@ export const calculateBMI = () => {  // ES6 Syntax
   const status = evaluate(BMI);
   const statusMessage = `<br/>Your Status is: ${status}`;
   document.getElementById("result").innerHTML += statusMessage;
+  console.log(JSON.stringify(person));
 }
 
 window.calculateBMI = calculateBMI;
+
+const loadPersons = () => {
+  fetch("https://jsonplaceholder.typicode.com/users")
+    .then(res => {
+      res.json().then(persons => {
+        console.log(persons);
+      });
+    }).catch(err => {
+      console.log("Something went wrong!!!!");
+    });
+}
+
+const loadPersons2 = async () => {
+  try {
+    const res = await fetch("https://xjsonplaceholder.typicode.com/users");
+    const persons = await res.json();
+    console.log(persons);
+  } catch (error) {
+    console.log("Something went wrong!!!!");
+  }
+}
+
+loadPersons2();
