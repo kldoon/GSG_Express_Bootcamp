@@ -55,6 +55,11 @@ app.get('/about-us', (req, res) => {
   res.send('We are a team of developers who learns ExpressJS!');
 });
 
+app.all('*', (req, res) => {
+  res.status(404);
+  res.send("Man I didn't create that yet go home");
+});
+
 app.listen(port, host, () => {
   console.log(`Server is listening on http://${host}:${port}`)
 });
