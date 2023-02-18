@@ -1,0 +1,12 @@
+{
+  "name": "first-project",
+  "version": "0.1.0",
+  "description": "This is my first nodejs project, it's gonna be very simple one!",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Khaldoun Halawani",
+  "license": "ISC"
+}
