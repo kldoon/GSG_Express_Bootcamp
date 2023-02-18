@@ -1,0 +1,15 @@
+{
+  "name": "express-hello-world",
+  "version": "1.0.0",
+  "description": "First ExpressJS example",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Khaldoun Halawani",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
