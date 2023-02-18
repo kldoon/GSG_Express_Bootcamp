@@ -1,8 +1,9 @@
 import express from 'express';
 import { faker } from '@faker-js/faker';
 
-
 const app = express();
+app.use(express.json());
+
 const port = 3000;
 const host = '127.0.0.1';
 
@@ -21,13 +22,13 @@ app.delete('/users', (req, res) => {
   res.send("One user deleted!")
 });
 
-app.get('/users/add', (req, res) => {
+app.post('/users', (req, res) => {
+  console.log(req.body);
   USERS.push({
-    id: faker.datatype.uuid(),
-    fullName: faker.name.fullName(),
-    dob: faker.date.birthdate()
+    id: req.body.id || faker.random.numeric(3),
+    name: req.body.name || faker.name.fullName(),
+    dob: req.body.dob || faker.date.birthdate()
   });
-
   res.send("User Added!");
 });
 
