@@ -1,0 +1,15 @@
+{
+  "name": "express-routers",
+  "version": "1.0.0",
+  "description": "Example to explain expressjs routers",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Khaldoun Halawani (GSG)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
