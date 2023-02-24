@@ -3,6 +3,17 @@ const logger = (req, res, next) => {
   next();
 };
 
+const requestTime = (req, res, next) => {
+  if (res.locals.reqStartTime) {
+    const elapsedTime = Date.now() - res.locals.reqStartTime;
+    console.log(`This request took: ${elapsedTime}ms`);
+    // res.send(`${res.locals.count} User/s Added!`);
+  } else {
+    res.locals.reqStartTime = Date.now();
+    next();
+  }
+}
+
 const printHi = (req, res, next) => {
   console.log("Hi====");
   next();
@@ -15,5 +26,6 @@ const printBye = (req, res, next) => {
 export {
   logger,
   printHi,
-  printBye
+  printBye,
+  requestTime
 }

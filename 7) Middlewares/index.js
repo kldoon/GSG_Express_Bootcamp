@@ -1,6 +1,6 @@
 import express from 'express';
 import { faker } from '@faker-js/faker';
-import { logger, printBye, printHi } from './middlewares.js';
+import { logger, printBye, printHi, requestTime } from './middlewares.js';
 
 const app = express();
 app.use(express.json());
@@ -31,7 +31,7 @@ app.post('/users', printHi, (req, res, next) => {
   res.send("User Added!");
 }, printBye);
 
-app.post('/users/batch', (req, res) => {
+app.post('/users/batch', requestTime, (req, res, next) => {
   const count = Number(req.query.count) || 1;
 
   for (let i = 0; i < count; i++) {
@@ -41,8 +41,11 @@ app.post('/users/batch', (req, res) => {
       dob: req.body.dob || faker.date.birthdate()
     });
   }
+
+  //res.locals.count=count;
+  next();
   res.send(`${count} User/s Added!`);
-});
+}, requestTime);
 
 // app.delete('/users/:id/:name', (req, res) => {  // you can send multiple params
 app.delete('/users/:id', (req, res) => {
