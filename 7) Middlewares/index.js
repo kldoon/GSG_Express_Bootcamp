@@ -1,8 +1,10 @@
 import express from 'express';
 import { faker } from '@faker-js/faker';
+import cors from 'cors';
 import { logger, printBye, printHi, requestTime } from './middlewares.js';
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use('/users', logger);
 app.use('/posts', logger);
@@ -12,6 +14,13 @@ const host = '127.0.0.1';
 
 const USERS = [];
 
+app.use((req, res, next) => {
+  console.log("Before====");
+  res.on("finish", () => {
+    console.log("After====");
+  });
+  next();
+});
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -46,7 +55,6 @@ app.post('/users/batch', requestTime, (req, res, next) => {
   res.send(`${count} User/s Added!`);
 }, requestTime);
 
-// app.delete('/users/:id/:name', (req, res) => {  // you can send multiple params
 app.delete('/users/:id', (req, res) => {
   const id = Number(req.params.id);
   const userIndex = USERS.findIndex(item => item.id === id);
