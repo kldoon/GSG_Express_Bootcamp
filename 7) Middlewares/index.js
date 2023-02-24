@@ -42,7 +42,6 @@ app.post('/users/batch', requestTime, (req, res, next) => {
     });
   }
 
-  //res.locals.count=count;
   next();
   res.send(`${count} User/s Added!`);
 }, requestTime);

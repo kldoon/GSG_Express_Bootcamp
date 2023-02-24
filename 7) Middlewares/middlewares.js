@@ -7,7 +7,6 @@ const requestTime = (req, res, next) => {
   if (res.locals.reqStartTime) {
     const elapsedTime = Date.now() - res.locals.reqStartTime;
     console.log(`This request took: ${elapsedTime}ms`);
-    // res.send(`${res.locals.count} User/s Added!`);
   } else {
     res.locals.reqStartTime = Date.now();
     next();
