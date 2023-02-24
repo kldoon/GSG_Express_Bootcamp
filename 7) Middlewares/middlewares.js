@@ -3,7 +3,17 @@ const logger = (req, res, next) => {
   next();
 };
 
+const printHi = (req, res, next) => {
+  console.log("Hi====");
+  next();
+}
+
+const printBye = (req, res, next) => {
+  console.log("====bye");
+}
 
 export {
-  logger
+  logger,
+  printHi,
+  printBye
 }

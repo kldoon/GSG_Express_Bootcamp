@@ -1,16 +1,17 @@
 import express from 'express';
 import { faker } from '@faker-js/faker';
-import { logger } from './middlewares.js';
+import { logger, printBye, printHi } from './middlewares.js';
 
 const app = express();
 app.use(express.json());
+app.use('/users', logger);
+app.use('/posts', logger);
 
 const port = 3000;
 const host = '127.0.0.1';
 
 const USERS = [];
 
-app.use(logger);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -20,14 +21,15 @@ app.get('/users', (req, res) => {
   res.send(USERS);
 });
 
-app.post('/users', (req, res) => {
+app.post('/users', printHi, (req, res, next) => {
   USERS.push({
     id: req.body.id || faker.random.numeric(3),
     name: req.body.name || faker.name.fullName(),
     dob: req.body.dob || faker.date.birthdate()
   });
+  next();
   res.send("User Added!");
-});
+}, printBye);
 
 app.post('/users/batch', (req, res) => {
   const count = Number(req.query.count) || 1;
