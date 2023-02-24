@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Bootcamp App</title>
+  <style>
+    body {
+      background-color: rgb(118, 118, 118);
+    }
+
+    h1,
+    h2,
+    div {
+      text-align: center;
+    }
+
+    div,
+    label,
+    input,
+    button {
+      padding: 10px;
+    }
+
+    input,
+    button {
+      border-radius: 10px;
+      border: 1px solid grey;
+    }
+  </style>
+</head>
+
+<body onload="checkUser()">
+  <h1>Welcome to the GSG Bootcamp APP</h1>
+  <h2 id="message"></h2>
+  <br /><br /><br />
+  <div id="login-form">
+    <div>
+      <label>UserName</label><input type="text" id="username">
+    </div>
+    <div>
+      <label>Password</label><input type="password" id="password">
+    </div>
+    <div>
+      <button onclick="login()">Login</button>
+    </div>
+  </div>
+
+  <script>
+    const getCookie = (name) => (
+      document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
+    )
+    
+    const checkUser = () => {
+      if (getCookie('username') && getCookie('authToken')) {
+        document.getElementById("message").innerText =
+          `Hey Man, I know you, Your name is: ${getCookie('username')}`;
+        document.getElementById('login-form').style.display = 'none';
+      } else {
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById("message").innerText = '';
+      }
+    }
+
+    const login = () => {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const body = { username, password };
+
+      fetch('http://127.0.0.1:3000/login', {
+        method: 'POST',
+        credentials: 'include',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+      ).then(async res => {
+        console.log(await res.text());
+      }).catch(err => {
+        alert(err.toString())
+      })
+    }
+  </script>
+</body>
+
+</html>
