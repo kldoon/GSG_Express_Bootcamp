@@ -1,4 +1,5 @@
 import db from "../models/index.js";
+import { Op } from "sequelize";
 
 const create = (req, res) => {
   const std = {
@@ -16,8 +17,21 @@ const create = (req, res) => {
     });
 };
 
-const findAll = (req, res) => {
+const findAll = async (req, res) => {
+  const minGPA = req.query.minGPA;
+  const where = {};
+  if (minGPA) {
+    where.gpa = { [Op.gte]: minGPA }
+  }
 
+  try {
+    const students = await db.Student.findAll({
+      where
+    });
+    res.status(200).send(students);
+  } catch (error) {
+    res.status(500).send(err.message || "Something went wrong");
+  }
 };
 
 export default {
