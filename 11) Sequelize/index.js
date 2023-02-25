@@ -1,11 +1,14 @@
 import express from 'express';
 import db from './models/index.js';
+import studentRouter from './routes/student.route.js';
 
 const PORT = 3000;
 const HOST = '127.0.0.1';
 const app = express();
 
 app.use(express.json());
+
+app.use("/api/students", studentRouter);
 
 db.sequelize.sync()
   .then(() => {

@@ -2,7 +2,6 @@ import db from "../models/index.js";
 
 const create = (req, res) => {
   const std = {
-    id: 1,
     name: 'Ahmad',
     gpa: 2.5,
     is_graduated: false
