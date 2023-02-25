@@ -1,8 +1,12 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
+
+// This line just to get the autocomplete working!
+let s = new Sequelize({ dialect: 'mysql' });
 
 const Student = (sequelize) => {
+  s = sequelize;
   // "student" is going to be the table name in DB
-  return sequelize.define("student", {
+  return s.define("student", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
