@@ -2,9 +2,9 @@ import db from "../models/index.js";
 
 const create = (req, res) => {
   const std = {
-    name: 'Ahmad',
-    gpa: 2.5,
-    is_graduated: false
+    name: req.body.name,
+    gpa: req.body.gpa || 0,
+    is_graduated: req.body.is_graduated || false
   };
 
   db.Student.create(std)

@@ -8,8 +8,6 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/api/students", studentRouter);
-
 db.sequelize.sync()
   .then(() => {
     console.log("DB Sync Done Successfully!")
@@ -17,6 +15,8 @@ db.sequelize.sync()
   .catch((err) => {
     console.log(`Failed to Sync with DB: ${err.message}`);
   });
+
+app.use("/api/students", studentRouter);
 
 app.listen(PORT, HOST, () => {
   console.log(`Server is listening on http://${HOST}:${PORT}`)
