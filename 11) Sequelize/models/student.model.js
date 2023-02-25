@@ -10,7 +10,7 @@ const Student = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      required: true
+      allowNull: false
     },
     gpa: {
       type: DataTypes.FLOAT
