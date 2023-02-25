@@ -1,7 +1,9 @@
 import { Sequelize } from "sequelize";
 import dbConfig from '../config/db.config.js'
+import Student from "./student.model.js";
 
-const sequelize = new Sequelize(
+const db = {};
+db.sequelize = new Sequelize(
   dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD,
   {
     host: dbConfig.HOST,
@@ -16,7 +18,6 @@ const sequelize = new Sequelize(
   }
 );
 
-const db = {};
-db.sequelize = sequelize;
+db.Student = Student(db.sequelize);
 
 export default db;
