@@ -23,6 +23,10 @@ db.connect((err) => {
   }
 });
 
+app.on('close', () => {
+  db.end();
+});
+
 app.get('/students', (req, res) => {
   db.query('SELECT * FROM  students WHERE gpa>=4.0', (err, values) => {
     if (err) {
